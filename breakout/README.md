@@ -10,4 +10,7 @@ In order to find the orange object, it is needed to filter the frame with a mask
 ### Playing
 After finding the orange object, and its position, the frame was divide into three areas. And, depending on which area the object is found, the Breakout platform can move to the left, right or stay still. All steps to play the game are detailed in [breakout.py](breakout.py).
 
-## Result
+## Results
+https://github.com/user-attachments/assets/5c81be27-590f-4815-bdd6-a5aa9248dbb2
+
+This video is only a preview, the complete version can be found [here](media/playing_breakout_with_computer_vision.mp4).
