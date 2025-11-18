@@ -22,10 +22,13 @@ def get_max_orange_contour(frame):
 def get_orange_mask(frame):
     orange_mask = cv2.inRange(frame, lower_orange, upper_orange)
 
-    orange_mask = cv2.erode(orange_mask, kernel, iterations = 1)
-    orange_mask = cv2.dilate(orange_mask, kernel, iterations = 2)
+    return treat_mask(orange_mask)
 
-    return orange_mask
+def treat_mask(mask):
+    mask = cv2.erode(mask, kernel, iterations = 1)
+    mask = cv2.dilate(mask, kernel, iterations = 2)
+
+    return mask
 
 def mins_and_maxes_x_and_y_in_contour(contornos):
     min_x = max_x = min_y = max_y = None
@@ -73,7 +76,6 @@ while True:
             cy = int(M["m01"] / M["m00"])
             cv2.circle(frame, (cx, cy), 10, (255, 0, 255), -1)
 
-
             if cx > (half_frame_width + move_threshdold):
                 cv2.putText(frame, 'Moved right', (20, frame_height - 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
 
@@ -92,7 +94,7 @@ while True:
 
         cv2.rectangle(frame, (min_x, min_y), (max_x, max_y), (0, 255, 0), 3)
 
-    cv2.imshow("Webcam original", frame)
+    cv2.imshow("Webcam", frame)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
